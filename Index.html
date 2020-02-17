@@ -1,54 +1,70 @@
 ﻿<!DOCTYPE html>
 <html lang="ru">
 
-    <head>
-        <meta charset="utf-8">
-        <title>FlexTime - Главная</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-        <link href="css/normalize.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>FlexTime - Главная</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
 
     <body>
 
-        <header>
-
-            <nav>
-                <a href="#">
-                    <img src="#" width="0" height="0" alt="FlexTime" />
-                </a>
-                <ul>
-                    <li>
-                        Приложения
-                    </li>
-                    <li>
-                        Курсы
-                    </li>
-                </ul>
-                <a href="#">
-                    <img src="#" width="0" height="0" alt="Имя пользователя" />
-                </a>
-            </nav>
-            
+        <header class="page-header">
+            <div class="main-wrapper">
+                <nav class="main-nav">
+                    <a class="main-nav__logo" href="#">
+                        <img src="#" width="0" height="0" alt="FlexTime" />
+                    </a>
+                    <ul class="main-nav__list">
+                        <li>
+                            Приложения
+                        </li>
+                        <li>
+                            Курсы
+                        </li>
+                    </ul>
+                    <a class="main-nav__profile" href="#">
+                        <span class="main-nav__name">Имя пользователя</span>
+                        <img src="#" width="0" height="0" alt="Фотография пользователя" />
+                    </a>
+                </nav>
+            </div>
         </header>
 
-        <section>
-            <h1>Главная страница</h1>
-            <p>FlexTime - проект созданный для развития личностных навыков</p>
-            <p>Узнавай новое об интересующих тебя направлениях</p>
-            <p>Музыка, здоровье, психология и много другое</p>
-        </section>
+        <main class="page-main">
 
-        <section>
-            <h2>Приложения</h2>
-            <p>Воспользуйся приложениями, помогающими в обучении и практике</p>
-            <!-->примеры приложений и ссылки на них</-->
-        </section>
+            <section class="main-info">
+                <h1>Главная страница</h1>
+                <p>FlexTime - проект созданный для развития личностных навыков</p>
+                <p>Узнавай новое об интересующих тебя направлениях</p>
+                <p>Музыка, здоровье, психология и много другое</p>
+            </section>
 
-        <!--><section>
-            Популярные курсы
-        </section></-->
+            <section class="main-apps">
+                <h2>Приложения</h2>
+                <p>Воспользуйся приложениями, помогающими в обучении и практике</p>
+                <!-->примеры приложений и ссылки на них</-->
+            </section>
 
+            <!--><section>
+                Популярные курсы
+            </section></-->
+
+        </main>
+
+        <footer class="page-footer">
+
+            <div class="footer-contacts">
+                <a>Контакты</a>
+            </div>
+
+            <div class="footer-copyright">
+                <p>©2020 FlexTime</p>
+            </div>
+
+        </footer>
     </body>
 
 </html>
