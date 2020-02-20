@@ -42,35 +42,58 @@
         </header>
 
         <main class="page-main">
+            <h1 class="hidden-object">Главная страница</h1>
+            <section class="about">
+                <h2 class="hidden-object">Преимущества</h2>
 
-            <section class="info">
-                <h1>Главная страница</h1>
-                <p>FlexTime - проект созданный для развития личностных навыков</p>
-                <p>Узнавай новое об интересующих тебя направлениях</p>
-                <p>Музыка, здоровье, психология и много другое</p>
+                <div class="about__nav swiper">
+                    <button class="button button-to-left"><</button>
+
+                    <div class="about__item about__item_active">
+                        <p>FlexTime</p>
+                        <p>Проект созданный для развития личностных навыков</p>
+                    </div>
+
+                    <div class="about__item">
+                        <p>Открытость</p>
+                        <p>Получай новые знания и делись ими с другими</p>
+                    </div>
+
+                    <div class="about__item">
+                        <p>Разнообразие</p>
+                        <p>Музыка, здоровье, психология и много другое</p>
+                    </div>
+
+                    <button class="button button-to-right">></button>
+                </div>
+
             </section>
 
             <section class="apps">
-                <h2>Приложения</h2>
+                <h2 class="hidden-object">Приложения</h2>
                 <p>Воспользуйся приложениями, помогающими в обучении и практике</p>
-                <!-->примеры приложений и ссылки на них</-->
+                <div class="apps__nav swiper">
+                    <button class="button button-to-left"><</button>
+
+                    <a class="apps__item apps__item_active">
+                        <img src="img/200x200.jpg" width="200" height="200" />
+                    </a>
+
+                    <button class="button button-to-right">></button>
+                </div>
             </section>
 
-            <!--><section>
+            <!--<section>
                 Популярные курсы
-            </section></-->
+            </section>-->
 
         </main>
 
         <footer class="page-footer">
 
-            <div class="contacts">
-                <a>Контакты</a>
-            </div>
+            <a class="contacts" href="#">Контакты</a>
 
-            <div class="copyright">
-                <p>©2020 FlexTime</p>
-            </div>
+            <span class="copyright">©2020 FlexTime</span>
 
         </footer>
     </body>

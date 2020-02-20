@@ -15,8 +15,31 @@ img {
     height: auto;
 }
 
+a {
+    text-transform: none;
+    color: #fff;
+}
+
 .hidden-object {
     opacity: 0;
     position: absolute;
     z-index: -1;
+}
+
+.swiper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.swiper .button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.button {
+    background-color: transparent;
+    border: 2px solid @main-background;
 }
