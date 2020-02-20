@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlexTime - Главная</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="css/normalize.css" rel="stylesheet">
@@ -12,37 +13,44 @@
     <body>
 
         <header class="page-header">
-            <div class="main-wrapper">
-                <nav class="main-nav">
-                    <a class="main-nav__logo" href="#">
-                        <img src="#" width="0" height="0" alt="FlexTime" />
-                    </a>
-                    <ul class="main-nav__list">
-                        <li>
-                            Приложения
-                        </li>
-                        <li>
-                            Курсы
-                        </li>
-                    </ul>
+
+            <nav class="main-nav">
+
+                <a class="main-nav__logo" href="#">
+                    <img src="#" width="150" height="55" alt="FlexTime" />
+                </a>
+
+                <div class="main-nav__wrapper">
+
                     <a class="main-nav__profile" href="#">
+                        <img src="img/profile.png" width="35" height="35" alt="Фотография пользователя" />
                         <span class="main-nav__name">Имя пользователя</span>
-                        <img src="#" width="0" height="0" alt="Фотография пользователя" />
                     </a>
-                </nav>
-            </div>
+
+                    <a class="main-nav__apps">
+                        Приложения
+                    </a>
+                        
+                    <a class="main-nav__courses">
+                        Курсы
+                    </a>
+
+                </div>
+
+            </nav>
+
         </header>
 
         <main class="page-main">
 
-            <section class="main-info">
+            <section class="info">
                 <h1>Главная страница</h1>
                 <p>FlexTime - проект созданный для развития личностных навыков</p>
                 <p>Узнавай новое об интересующих тебя направлениях</p>
                 <p>Музыка, здоровье, психология и много другое</p>
             </section>
 
-            <section class="main-apps">
+            <section class="apps">
                 <h2>Приложения</h2>
                 <p>Воспользуйся приложениями, помогающими в обучении и практике</p>
                 <!-->примеры приложений и ссылки на них</-->
@@ -56,11 +64,11 @@
 
         <footer class="page-footer">
 
-            <div class="footer-contacts">
+            <div class="contacts">
                 <a>Контакты</a>
             </div>
 
-            <div class="footer-copyright">
+            <div class="copyright">
                 <p>©2020 FlexTime</p>
             </div>
 
