@@ -1,29 +1,35 @@
 .about {
+    position: relative;
     display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.about__nav .button {
-    
-}
-
-.about__item {
-    display: none;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 80%;
-    margin: 0 auto 0 auto;
+    width: 100%;
+    min-height: 100px;
+    padding: 0;
 }
 
-.about__item p {
+@media (min-width: @tablet-width) {
+    .about {
+        min-height: 200px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .about {
+        min-height: 300px;
+    }
+}
+
+.about p {
+    text-transform: uppercase;
+    font-family:24px;
     text-align: center;
+    width: 85%;
+    z-index: 2;
 }
 
-.about__item p:nth-child(1) {
-    margin-bottom: 0;
-}
-
-.about__item_active {
-    display: flex;
-}
+.about img {
+    position: absolute;
+    z-index: 1;
+} 

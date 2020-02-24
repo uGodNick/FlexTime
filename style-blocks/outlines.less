@@ -16,7 +16,7 @@ img {
 }
 
 a {
-    text-transform: none;
+    text-decoration: none;
     color: #fff;
 }
 
@@ -30,7 +30,14 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 85%;
+}
+
+@media (min-width: @tablet-width) {
+    .swiper {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 .swiper .button {
@@ -38,6 +45,13 @@ a {
     height: 30px;
     border-radius: 50%;
 }
+
+@media (min-width: @tablet-width) {
+    .swiper .button {
+        display: none;
+    }
+}
+
 
 .button {
     background-color: transparent;

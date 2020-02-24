@@ -4,9 +4,21 @@
     width: 100%;
 }
 
+@media (min-width: @desktop-width) {
+    .page-main {
+        width: 1024px;
+        margin: 0 auto 0 auto;
+    }
+}
+
 .page-main section {
     background: @additional-background;
     border-bottom: 2px solid @main-background;
+    padding: 10px 0 10px 0;
+}
+
+.page-main section:last-child {
+    border: none;
 }
 
 .page-main h1 {
