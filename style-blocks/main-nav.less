@@ -5,12 +5,6 @@
     background: @additional-background;
 }
 
-@media (min-width: @tablet-width) {
-    .main-nav {
-        justify-content: space-around;
-    }
-}
-
 .main-nav__logo {
     display: flex;
     justify-content: center;
@@ -18,11 +12,6 @@
     min-height: 55px;
 }
 
-@media (min-width: @tablet-width) {
-    .main-nav__logo {
-        width: auto;
-    }
-}
 
 .button_nav {
     width: 66px;
@@ -30,25 +19,12 @@
     border: none;
 }
 
-@media (min-width: @tablet-width) {
-    .button_nav {
-        display: none;
-    }
-}
 
 .main-nav__wrapper {
     position: absolute;
     display: none;
 }
 
-@media (min-width: @tablet-width) {
-    .main-nav__wrapper {
-        position: unset;
-        display: flex;
-        flex-direction: row-reverse;
-        min-height: 55px;
-    }
-}
 
 .main-nav__wrapper_active {
     display: flex;
@@ -68,12 +44,6 @@
     margin-left: 7px;
 }
 
-@media (min-width: @tablet-width) {
-    .main-nav__profile {
-        min-height: 55px;
-        margin-left: 20px;
-    }
-}
 
 .main-nav__apps,
 .main-nav__courses {
@@ -84,8 +54,32 @@
 }
 
 @media (min-width: @tablet-width) {
+    .main-nav {
+        justify-content: space-around;
+    }
+
+    .main-nav__logo {
+        width: auto;
+    }
+
+    .main-nav__wrapper {
+        position: unset;
+        display: flex;
+        flex-direction: row-reverse;
+        min-height: 55px;
+    }
+
+    .button_nav {
+        display: none;
+    }
+
     .main-nav__apps,
     .main-nav__courses {
+        min-height: 55px;
+        margin-left: 20px;
+    }
+
+    .main-nav__profile {
         min-height: 55px;
         margin-left: 20px;
     }

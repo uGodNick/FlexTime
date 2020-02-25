@@ -33,27 +33,24 @@ a {
     width: 85%;
 }
 
-@media (min-width: @tablet-width) {
-    .swiper {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
 .swiper .button {
     width: 30px;
     height: 30px;
     border-radius: 50%;
 }
 
-@media (min-width: @tablet-width) {
-    .swiper .button {
-        display: none;
-    }
-}
-
-
 .button {
     background-color: transparent;
     border: 2px solid @main-background;
+}
+
+@media (min-width: @tablet-width) {
+    .swiper {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .swiper .button {
+        display: none;
+    }
 }

@@ -264,17 +264,22 @@ a {
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 100px;
+  min-height: 120px;
   padding: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 360px) {
   .about {
-    min-height: 200px;
+    min-height: 170px;
   }
 }
-@media (min-width: 1000px) {
+@media (min-width: 500px) {
   .about {
-    min-height: 300px;
+    min-height: 220px;
+  }
+}
+@media (min-width: 630px) {
+  .about {
+    min-height: 270px;
   }
 }
 .about p {
@@ -287,4 +292,5 @@ a {
 .about img {
   position: absolute;
   z-index: 1;
+  max-height: 277px;
 }
