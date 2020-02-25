@@ -51,6 +51,13 @@
     margin-left: 20px;
     min-height: 35px;
     align-items: center;
+    justify-content: center;
+    width: 110px;
+}
+
+.main-nav__apps_active,
+.main-nav__courses_active {
+    background-color: @main-background;
 }
 
 @media (min-width: @tablet-width) {
@@ -80,6 +87,10 @@
     }
 
     .main-nav__profile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
         min-height: 55px;
         margin-left: 20px;
     }

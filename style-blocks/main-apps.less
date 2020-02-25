@@ -1,38 +1,38 @@
-.apps {
+.main-apps {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
 }
 
-.apps__list {
+.main-apps__list {
     width: 85%;
     display: flex;
     justify-content: center;
     padding-top: 5px;
 }
 
-.apps p {
+.main-apps p {
     margin: 10px 10% 10px 10%;
     text-align: center;
 }
 
-.apps__item {
+.main-apps__item {
     display: none;
     flex-direction: column;
     align-items: center;
 }
 
-.apps__item_active {
+.main-apps__item_active {
     display: flex;
 }
 
 @media (min-width: @tablet-width) {
-    .apps__list {
+    .main-apps__list {
         justify-content: normal;
     }
 
-    .apps__item {
+    .main-apps__item {
         display: flex;
         margin-left: 15px;
     }
