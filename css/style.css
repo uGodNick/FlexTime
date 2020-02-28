@@ -34,8 +34,9 @@ a {
   border-radius: 50%;
 }
 .button {
-  background-color: transparent;
   border: 2px solid #0d0409;
+  background-color: transparent;
+  padding: 5px;
 }
 @media (min-width: 768px) {
   .swiper {
@@ -156,10 +157,12 @@ a {
   border: none;
 }
 .page-main h1 {
-  font-size: 24px;
+  font-size: 40px;
+  font-weight: 400;
 }
 .page-main h2 {
-  font-size: 16px;
+  font-size: 34px;
+  font-weight: 400;
 }
 .advantages {
   display: flex;
@@ -291,4 +294,49 @@ a {
   position: absolute;
   z-index: 1;
   max-height: 277px;
+}
+.apps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.apps__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #0d0409;
+}
+.apps__item__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.apps__item__content__top {
+  min-height: 162px;
+}
+.apps__item__content .button {
+  text-align: center;
+  width: 100px;
+}
+@media (min-width: 768px) {
+  .apps__item {
+    flex-direction: row;
+    width: 80%;
+  }
+  .apps {
+    align-items: normal;
+  }
+  .apps h1 {
+    width: 80%;
+    margin: 20px auto 40px auto;
+  }
+  .apps__item__content {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    margin-left: 25px;
+  }
 }
