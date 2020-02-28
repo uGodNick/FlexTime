@@ -46,6 +46,10 @@ a {
   .swiper .button {
     display: none;
   }
+  h1 {
+    width: 80%;
+    margin: 20px auto 40px auto;
+  }
 }
 .page-header {
   display: flex;
@@ -329,11 +333,48 @@ a {
   .apps {
     align-items: normal;
   }
-  .apps h1 {
-    width: 80%;
-    margin: 20px auto 40px auto;
-  }
   .apps__item__content {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    margin-left: 25px;
+  }
+}
+.courses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.courses__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #0d0409;
+}
+.courses__item__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.courses__item__content__top {
+  min-height: 162px;
+}
+.courses__item__content .button {
+  text-align: center;
+  width: 100px;
+}
+@media (min-width: 768px) {
+  .courses__item {
+    flex-direction: row;
+    width: 80%;
+  }
+  .courses {
+    align-items: normal;
+  }
+  .courses__item__content {
     display: flex;
     flex-direction: column;
     align-items: normal;
