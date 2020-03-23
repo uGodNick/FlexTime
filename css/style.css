@@ -1,5 +1,5 @@
 body {
-  background: #0d0409;
+  background-image: url('../img/background.jpg');
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
@@ -34,7 +34,7 @@ a {
   border-radius: 50%;
 }
 .button {
-  border: 2px solid #0d0409;
+  border: 2px solid #121212;
   background-color: transparent;
   padding: 5px;
   color: #fff;
@@ -67,7 +67,7 @@ a {
   display: flex;
   width: 100%;
   min-height: 55px;
-  background: #160b19;
+  background: #0d0d0d;
 }
 .main-nav__logo {
   display: flex;
@@ -110,7 +110,7 @@ a {
 }
 .main-nav__apps_active,
 .main-nav__courses_active {
-  background-color: #0d0409;
+  background-color: #121212;
 }
 @media (min-width: 768px) {
   .main-nav {
@@ -147,16 +147,13 @@ a {
   flex-direction: column;
   width: 100%;
 }
-@media (min-width: 1200px) {
-  .page-main {
-    width: 1024px;
-    margin: 0 auto 0 auto;
-  }
-}
 .page-main section {
-  background: #160b19;
-  border-bottom: 2px solid #0d0409;
+  background: #0d0d0d;
+  border-bottom: 2px solid transparent;
   padding: 10px 0 10px 0;
+}
+.page-main .about {
+  background: none;
 }
 .page-main section:last-child {
   border: none;
@@ -168,6 +165,12 @@ a {
 .page-main h2 {
   font-size: 34px;
   font-weight: 400;
+}
+@media (min-width: 1200px) {
+  .page-main {
+    width: 1200px;
+    margin: 0 auto 0 auto;
+  }
 }
 .advantages {
   display: flex;
@@ -216,6 +219,10 @@ a {
 @media (min-width: 768px) {
   .advantages__item {
     display: flex;
+    width: 300px;
+  }
+  .advantages > p {
+    margin-bottom: 16px;
   }
 }
 .main-apps {
@@ -254,7 +261,7 @@ a {
 .page-footer {
   display: flex;
   justify-content: space-around;
-  background-color: #160b19;
+  background-color: #0d0d0d;
   align-items: center;
   min-height: 50px;
   margin-top: 5px;
@@ -271,35 +278,32 @@ a {
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 120px;
+  height: 60px;
   padding: 0;
 }
-@media (min-width: 360px) {
-  .about {
-    min-height: 170px;
-  }
-}
-@media (min-width: 500px) {
-  .about {
-    min-height: 220px;
-  }
-}
-@media (min-width: 630px) {
-  .about {
-    min-height: 270px;
-  }
+.about h3 {
+  font-size: 16px;
+  text-align: center;
 }
 .about p {
+  display: none;
+  margin-top: 0;
   text-transform: uppercase;
-  font-family: 24px;
+  font-size: 14px;
   text-align: center;
   width: 85%;
-  z-index: 2;
 }
-.about img {
-  position: absolute;
-  z-index: 1;
-  max-height: 277px;
+@media (min-width: 1200px) {
+  .about {
+    height: 200px;
+  }
+  .about h3 {
+    font-size: 28px;
+  }
+  .about p {
+    display: block;
+    font-size: 16px;
+  }
 }
 .apps {
   display: flex;
@@ -313,7 +317,7 @@ a {
   align-items: center;
   margin: 0 auto 20px auto;
   padding-bottom: 20px;
-  border-bottom: 2px solid #0d0409;
+  border-bottom: 2px solid transparent;
 }
 .apps__item__content {
   display: flex;
@@ -354,7 +358,7 @@ a {
   align-items: center;
   margin: 0 auto 20px auto;
   padding-bottom: 20px;
-  border-bottom: 2px solid #0d0409;
+  border-bottom: 2px solid transparent;
 }
 .courses__item__content {
   display: flex;
@@ -415,7 +419,7 @@ a {
 .contacts__form input[type="text"] {
   width: 65%;
   border: 2px solid #fff;
-  background-color: #0d0409;
+  background-color: #121212;
   padding: 5px;
   color: #fff;
 }
@@ -429,7 +433,7 @@ a {
   margin-right: 15px;
 }
 .contacts__form textarea {
-  background-color: #0d0409;
+  background-color: #121212;
   color: #fff;
   width: 98%;
   height: 220px;
@@ -451,5 +455,66 @@ a {
   }
   .contacts__form textarea {
     width: 99%;
+  }
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.profile__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  min-height: 500px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid transparent;
+}
+.profile__image {
+  max-width: 500px;
+}
+.profile__image img {
+  max-width: 100%;
+}
+.profile__name {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.profile__info div:not(:first-child) {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  height: 30px;
+}
+@media (min-width: 768px) {
+  .profile__wrapper {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: normal;
+    width: 80%;
+  }
+  .profile__info div:first-child {
+    display: flex;
+    justify-content: flex-start;
+    width: 80%;
+  }
+  .profile__name {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+  .profile__info {
+    width: 500px;
+  }
+  .profile__image {
+    width: 350px;
   }
 }

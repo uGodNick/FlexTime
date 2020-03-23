@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlexTime - Курсы</title>
+    <title>FlexTime - Приложения</title>
     <link href="../img/watch.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="../css/normalize.css" rel="stylesheet">
@@ -27,16 +27,16 @@
 
             <div class="main-nav__wrapper">
 
-                <a class="main-nav__profile" href="#">
+                <a class="main-nav__profile main-nav__apps_active" href="#">
                     <img src="../img/profile.png" width="35" height="35" alt="Фотография пользователя" />
                     <span class="main-nav__name">Имя пользователя</span>
                 </a>
 
-                <a class="main-nav__apps" href="../apps/index.html">
+                <a class="main-nav__apps" href="#">
                     Приложения
                 </a>
 
-                <a class="main-nav__courses main-nav__courses_active" href="#">
+                <a class="main-nav__courses" href="../courses/index.html">
                     Курсы
                 </a>
 
@@ -47,23 +47,34 @@
     </header>
 
     <main class="page-main">
-        
-        
-        <section class="courses">
-            <h1>Курсы</h1>
-            <div class="courses__item">
-                <img src="../img/200x200.jpg" width="200" height="200" />
-                <div class="courses__item__content">
-                    <div class="courses__item__content__top">
-                        <h2>Название</h2>
-                        <p>Описание</p>
-                        <span>Количество уроков по теме</span>
+
+        <section class="profile">
+            <h1>Профиль</h1>
+            <div class="profile__wrapper">
+                <div class="profile__image">
+                    <img src="../img/profile.png" />
+                </div>
+                <div class="profile__info">
+                    <div class="profile__name">nickname</div>
+                    <div class="progile__rating">
+                        <span>Рейтинг:</span>
+                        <span class="rating__value">56</span>
                     </div>
-                    <a class="button" href="#">Перейти</a>
+                    <div class="progile__date-reg">
+                        <span>Дата регистрации:</span>
+                        <span class="date-reg__value">20.03.20</span>
+                    </div>
+                    <div class="progile__date-last-active">
+                        <span>Последняя активность:</span>
+                        <span class="date-last-active__value">22.03.20</span>
+                    </div>
+
+                    <span></span>
                 </div>
             </div>
+
         </section>
-        
+
     </main>
 
     <footer class="page-footer">

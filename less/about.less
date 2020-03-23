@@ -5,38 +5,32 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 120px;
+    height: 60px;
     padding: 0;
 }
 
-@media (min-width: 360px) {
-    .about {
-        min-height: 170px;
-    }
-}
-
-@media (min-width: 500px) {
-    .about {
-        min-height: 220px;
-    }
-}
-
-@media (min-width: 630px) {
-    .about {
-        min-height: 270px;
-    }
+.about h3 {
+    font-size: 16px;
+    text-align: center;
 }
 
 .about p {
+    display: none;
+    margin-top: 0;
     text-transform: uppercase;
-    font-family:24px;
+    font-size: 14px;
     text-align: center;
     width: 85%;
-    z-index: 2;
 }
-
-.about img {
-    position: absolute;
-    z-index: 1;
-    max-height: 277px;
-} 
+@media (min-width: @desktop-width){
+    .about {
+        height: 200px;
+    }
+    .about h3 {
+        font-size: 28px;
+    }
+    .about p {
+        display: block;
+        font-size: 16px;
+    }
+}

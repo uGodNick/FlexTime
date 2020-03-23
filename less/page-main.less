@@ -4,17 +4,14 @@
     width: 100%;
 }
 
-@media (min-width: @desktop-width) {
-    .page-main {
-        width: 1024px;
-        margin: 0 auto 0 auto;
-    }
-}
-
 .page-main section {
     background: @additional-background;
-    border-bottom: 2px solid @main-background;
+    border-bottom: 2px solid transparent;
     padding: 10px 0 10px 0;
+}
+
+.page-main .about {
+    background: none;
 }
 
 .page-main section:last-child {
@@ -29,4 +26,11 @@
 .page-main h2 {
     font-size: 34px;
     font-weight: 400;
+}
+
+@media (min-width: @desktop-width) {
+    .page-main {
+        width: 1200px;
+        margin: 0 auto 0 auto;
+    }
 }

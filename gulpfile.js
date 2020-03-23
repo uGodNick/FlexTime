@@ -60,8 +60,7 @@ function browserReload(done) {
 function watchFiles(done) {
     gulp.watch('./**/*.html', browserReload)
     gulp.watch('./less/**/*.less', style)
-    gulp.watch('./img/**/*.{png, jpg, svg}', gulp.series(minImages, browserReload))
     done()
 }
 
-gulp.task('default', gulp.parallel(server, watchFiles, minImages, style));
+gulp.task('default', gulp.parallel(server, watchFiles, minImages));
