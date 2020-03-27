@@ -1,10 +1,11 @@
 var gulp = require('gulp');
 var less = require('gulp-less');
 var rename = require('gulp-rename');
-var minify = require('gulp-csso');
+var minifyCss = require('gulp-csso');
 var autoprefixer = require('gulp-autoprefixer');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
+var minifyJs = require('gulp-uglify');
 
 function server(done) {
     browserSync.init({
@@ -27,7 +28,7 @@ function style (done) {
             cascade: false
         }))
         .pipe(gulp.dest("./css"))
-        .pipe(minify())
+        .pipe(minifyCss())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest("./css"))
         .pipe(browserSync.stream());
@@ -48,7 +49,7 @@ function minImages(done) {
 function convertIntoWebp(done) {
     gulp.src('./img/**/*.{png, jpg, svg}')
         .pipe(webp({ quality: 90 }))
-        .pipe(gulp.dest('./img'))
+        .pipe(gulp.dest('./img'));
     done()
 }
 
@@ -57,9 +58,19 @@ function browserReload(done) {
     done();
 }
 
+function minJs(done) {
+    gulp.src('./preJs/**/*.js')
+        .pipe(minifyJs())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest('./js'));
+    browserSync.reload();
+    done()
+}
+
 function watchFiles(done) {
     gulp.watch('./**/*.html', browserReload)
     gulp.watch('./less/**/*.less', style)
+    gulp.watch('./preJs/**/*.js', minJs)
     done()
 }
 

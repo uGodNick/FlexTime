@@ -81,8 +81,16 @@ a {
   border: none;
 }
 .main-nav__wrapper {
+  background: #0d0d0d;
   position: absolute;
-  display: none;
+  top: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 20px;
+  min-height: 140px;
+  width: 250px;
+  z-index: 10;
 }
 .main-nav__wrapper_active {
   display: flex;
@@ -105,12 +113,15 @@ a {
   margin-left: 20px;
   min-height: 35px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 110px;
+}
+.hidden {
+  display: none;
 }
 .main-nav__apps_active,
 .main-nav__courses_active {
-  background-color: #121212;
+  background-color: #0d0d0d;
 }
 @media (min-width: 768px) {
   .main-nav {
@@ -124,12 +135,15 @@ a {
     display: flex;
     flex-direction: row-reverse;
     min-height: 55px;
+    padding: 0;
+    width: auto;
   }
   .button_nav {
     display: none;
   }
   .main-nav__apps,
   .main-nav__courses {
+    justify-content: center;
     min-height: 55px;
     margin-left: 20px;
   }
@@ -213,7 +227,7 @@ a {
 .advantages__item p:nth-child(1) {
   margin-bottom: 0;
 }
-.advantages__item_active {
+.swiper__item_active {
   display: flex;
 }
 @media (min-width: 768px) {
@@ -246,7 +260,7 @@ a {
   flex-direction: column;
   align-items: center;
 }
-.main-apps__item_active {
+.swiper__item_active {
   display: flex;
 }
 @media (min-width: 768px) {
@@ -481,7 +495,7 @@ a {
 }
 .profile__name {
   font-size: 28px;
-  margin-bottom: 20px;
+  margin: 10px 0 20px 0;
 }
 .profile__info {
   display: flex;
