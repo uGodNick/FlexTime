@@ -20,6 +20,13 @@ a {
     color: #fff;
 }
 
+input {
+    border: 2px solid #fff;
+    background-color: @main-background;
+    padding: 5px;
+    color: #fff;
+}
+
 .hidden-object {
     opacity: 0;
     position: absolute;
@@ -46,6 +53,10 @@ a {
     color: #fff;
 }
 
+.button:hover {
+    cursor: pointer;
+}
+
 @media (min-width: @tablet-width) {
     .swiper {
         width: 100%;
@@ -60,4 +71,8 @@ a {
         width: 80%;
         margin: 20px auto 40px auto;
     }
+}
+
+.hidden {
+    display: none;
 }
