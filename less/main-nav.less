@@ -27,7 +27,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding-top: 20px;
-    min-height: 140px;
+    min-height: 165px;
     width: 250px;
     z-index: 10;
 }
@@ -43,8 +43,8 @@
 .main-nav__profile {
     display: flex;
     align-items: center;
-    min-height: 35px;
-    margin-left: 20px;
+    min-height: 55px;
+    padding-left: 20px;
 }
 
 .main-nav__profile span {
@@ -55,16 +55,16 @@
 .main-nav__apps,
 .main-nav__courses {
     display: flex;
-    margin-left: 20px;
-    min-height: 35px;
+    padding-left: 20px;
+    min-height: 55px;
     align-items: center;
     justify-content: flex-start;
-    width: 110px;
+    width: 230px;
 }
 
 .main-nav__apps_active,
 .main-nav__courses_active {
-    background-color: @additional-background;
+    background-color: @main-background;
 }
 
 @media (min-width: @tablet-width) {
@@ -93,6 +93,8 @@
         justify-content: center;
         min-height: 55px;
         margin-left: 20px;
+        padding: 0;
+        width: 110px;
     }
 
     .main-nav__profile {
@@ -100,6 +102,7 @@
         align-items: center;
         justify-content: center;
         width: 200px;
+        padding: 0;
         min-height: 55px;
         margin-left: 20px;
     }

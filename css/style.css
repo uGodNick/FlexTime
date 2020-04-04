@@ -34,7 +34,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding-top: 20px;
-  min-height: 140px;
+  min-height: 165px;
   width: 250px;
   z-index: 10;
 }
@@ -47,8 +47,8 @@
 .main-nav__profile {
   display: flex;
   align-items: center;
-  min-height: 35px;
-  margin-left: 20px;
+  min-height: 55px;
+  padding-left: 20px;
 }
 .main-nav__profile span {
   margin-left: 7px;
@@ -56,15 +56,15 @@
 .main-nav__apps,
 .main-nav__courses {
   display: flex;
-  margin-left: 20px;
-  min-height: 35px;
+  padding-left: 20px;
+  min-height: 55px;
   align-items: center;
   justify-content: flex-start;
-  width: 110px;
+  width: 230px;
 }
 .main-nav__apps_active,
 .main-nav__courses_active {
-  background-color: #0d0d0d;
+  background-color: #121212;
 }
 @media (min-width: 768px) {
   .main-nav {
@@ -88,12 +88,15 @@
     justify-content: center;
     min-height: 55px;
     margin-left: 20px;
+    padding: 0;
+    width: 110px;
   }
   .main-nav__profile {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 200px;
+    padding: 0;
     min-height: 55px;
     margin-left: 20px;
   }
@@ -126,6 +129,33 @@
   .page-main {
     width: 1200px;
     margin: 0 auto 0 auto;
+  }
+}
+.registation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.registation a {
+  font-size: 14px;
+}
+.registation__form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto 10px auto;
+}
+.registation__form div {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+@media (min-width: 768px) {
+  .registation__form {
+    width: 50%;
   }
 }
 .advantages {
@@ -320,13 +350,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 200px;
 }
 .courses__item__content__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 162px;
+  margin-bottom: 10px;
 }
 .courses__item__content .button {
   text-align: center;
   width: 100px;
+}
+.courses__description {
+  margin-top: 0;
+  padding: 0px 20px 0 20px;
 }
 @media (min-width: 768px) {
   .courses__item {
@@ -341,6 +380,12 @@
     flex-direction: column;
     align-items: normal;
     margin-left: 25px;
+  }
+  .courses__item__content__top {
+    align-items: flex-start;
+  }
+  .courses__description {
+    padding: 0;
   }
 }
 .contacts {
@@ -477,6 +522,96 @@
   }
   .profile__image {
     width: 250px;
+  }
+}
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+}
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin-top: 100px;
+}
+.login__form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 280px;
+}
+@media (min-width: 768px) {
+  .login {
+    font-size: 20px;
+  }
+  .login__form div {
+    width: 600px;
+    margin-bottom: 20px;
+  }
+  .login__form input {
+    height: 35px;
+  }
+  .login__form input[type="submit"] {
+    width: 100px;
+    height: 50px;
+  }
+}
+.courses-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.courses-list__header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.button__make-course {
+  position: absolute;
+  right: 65px;
+  top: 70px;
+}
+.courses-list__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  margin: 10px auto 0 auto;
+  border-bottom: 2px solid #121212;
+}
+.courses-list__date {
+  display: none;
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
+}
+.courses-list__item h2 {
+  font-size: 20px;
+}
+@media (min-width: 768px) {
+  .courses-list {
+    align-items: normal;
+  }
+  .courses-list__header {
+    margin-bottom: 0;
+  }
+  .button__make-course {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+  }
+  .courses-list__item {
+    align-items: normal;
+  }
+  .courses-list__date {
+    display: block;
   }
 }
 body {

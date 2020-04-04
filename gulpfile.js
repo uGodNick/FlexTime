@@ -5,7 +5,7 @@ var minifyCss = require('gulp-csso');
 var autoprefixer = require('gulp-autoprefixer');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
-var minifyJs = require('gulp-uglify');
+var minifyJs = require('gulp-uglify-es').default;
 
 function server(done) {
     browserSync.init({
