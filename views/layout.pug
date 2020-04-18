@@ -1,0 +1,37 @@
+doctype html
+html(lang="ru")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title FlexTime - #{title}
+    link(href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet")
+    link(href="/css/normalize.css" rel="stylesheet")
+    link(href="/css/style.min.css" rel="stylesheet")
+  body
+    header.page-header
+      nav.main-nav
+        button.button.button_nav
+          img(src="/img/hamburger-menu.webp" width="100" height="100" alt="меню")
+        a.main-nav__logo(href="/")
+          img(src="/img/logo.webp" width="300" height="110" alt="FlexTime")
+        .main-nav__wrapper
+          if user
+            a.main-nav__profile(href=user_url)
+              img(src="/img/profile.png" width="35" height="35")
+              span.main-nav__name #{user.username}
+          else
+            a.main-nav__profile(href="/login")
+              img(src="/img/profile.png" width="35" height="35")
+              span.main-nav__name Войти
+          a.main-nav__apps(href="apps")
+            | Приложения
+          a.main-nav__courses(href="courses")
+            | Курсы
+    main.page-main
+      block content
+    footer.page-footer
+      a.contacts(href="/contacts") Контакты
+      span.copyright ©2020 FlexTime
+    script(src="/js/open-nav.min.js")
+    script(src="/js/swiper.min.js")
+  block scripts

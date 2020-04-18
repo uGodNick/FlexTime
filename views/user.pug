@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  section.profile
+      h1 Профиль
+      .profile__wrapper
+        .profile__image
+          img.profile__avatar(src="/img/profile.png" width="250" height="250")
+        .profile__info
+          if is_user
+            .profile__name #{user.username}
+          else
+            .profile__name #{current_user.username}
+          .progile__rating
+            span Рейтинг:
+            span.rating__value #{current_user.rating}
+          .progile__date-reg
+            span Дата регистрации:
+            span.date-reg__value #{current_user.register_date_formatted}
+          .progile__date-last-active 
+            span Последняя активность:
+            span.date-last-active__value #{current_user.last_active_date_formatted}
+          if is_user
+            div
+              form.profile__exit(method="post" action="logout")
+                input.button(type="submit" value="Выйти из аккаунта")
+              button.button.button__form-on.hidden Редактировать
+        form.profile__form.hidden(method="post")
+          input.profile__form__name(type="text" value=current_user.username)
+          div
+            label(for="profile__form__password") Пароль
+            input#profile__form__password(type="password" value=current_user.password)
+          div
+            label(for="profile__form__email") Почта
+            input#profile__form__email(type="email" value=current_user.email)
+          div
+            label.button(for="profile__form__image") Загрузить фото
+            input#profile__form__image.profile__form__chooser.hidden(type="file")
+            input.button.button__form-off(type="submit" value="Принять")
+  block script
+    script(src="../js/profile-form.min.js")
+    script(src="../js/avatar.min.js")

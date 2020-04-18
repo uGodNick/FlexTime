@@ -1,0 +1,25 @@
+extends layout
+
+block content
+ section.login
+    h1 Вход
+    form.login__form(method="post" action="")
+      if login && password
+        div
+          label(for="login") Логин
+          input#login(type="text" value=login name="login" required="true")
+        div
+          label(for="password") Пароль
+          input#password(type="password" value=password name="password") 
+        input.button(type="submit" value="Войти" required="true")
+      else
+        div
+          label(for="login") Логин
+          input#login(type="text" name="login" required='true')
+        div
+          label(for="password") Пароль
+          input#password(type="password" name="password" required='true')
+        input.button(type="submit" value="Войти")
+      if error
+        div.login__error
+          | #{error}

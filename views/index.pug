@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1.hidden-object Главная страница
+  section.about
+    h2.hidden-object Информация о проекте
+    h3 Проект созданный для развития личностных навыков
+    p Я – не то, что со мной случилось, я – то, чем я решил стать
+  section.advantages
+    h2.hidden-object Преимущества
+    p Почему вы должны использовать наш сайт?
+    .swiper
+      button.button.button-to-left <
+      .advantages__list
+        .advantages__item.swiper__item.swiper__item_active
+          p Достоверность
+          p Мы проверяем правдивость всей информации
+          img(src="/img/adv_1.jpg")
+        .advantages__item.swiper__item
+          p Открытость
+          p Получай новые знания и делись ими с другими людьми
+          img(src="/img/adv_2.jpg")
+        .advantages__item.swiper__item
+          p Разнообразие
+          p Музыка, здоровье, психология и много другое ждет вас на сайте
+          img(src="/img/adv_3.png")
+      button.button.button-to-right >
+  section.registation
+    h2 Регистрация
+    form.registation__form(method="post", action="")
+      div
+        label(for="username") Имя
+        input#username.registation__name(type="text" name="username" required='true' value=(undefined===user ? '' : user.username))
+      div
+        label(for="email") email
+        input#email.registation__email(type="email" name="email" required='true' value=(undefined===user ? '' : user.email))
+      div
+        label(for="password") Пароль
+        input#password.registation__password(type="password" name="password" required='true' minlength='8' value=(undefined===user ? '' : user.password))
+      input.button(type="submit" value="Зарегистрироваться")
+    a(href="/login") Уже есть аккаунт? - Вход
+
+

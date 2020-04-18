@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  html
+    body
+      section.contacts
+        h1 Контакты
+        .contacts__offer
+          form.contacts__form(name="offer-idea" method="post")
+            p Есть идея по совершенствованию проекта?
+            p Поделись ею с нами!
+            .contacts__user-mail
+              label(for="user-mail") Ваша почта:
+              input#user-mail(type="text")
+            textarea(type="text" placeholder="У меня есть идея...")
+            input.button(type="button" value="Предложить")
+        .contacts__info
+          p Почта техподдержки: flhelp@gmail.com

@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uGodNick/FlexTime.git"
   },
-  "author": "",
+  "author": "uGodNick",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/uGodNick/FlexTime/issues"
@@ -19,22 +21,34 @@
   "devDependencies": {
     "autoprefixer": "^9.7.4",
     "browser-sync": "^2.26.7",
+    "connect-mongodb": "^1.1.5",
+    "express-validator": "^6.4.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
-    "gulp-browserify": "^0.5.1",
-    "gulp-clean-css": "^4.2.0",
-    "gulp-less": "^4.0.1",
-    "gulp-minify": "^3.1.0",
-    "gulp-plumber": "^1.2.1",
-    "gulp-postcss": "^8.0.0",
-    "gulp-uglify": "^3.0.2",
-    "gulp-uglify-es": "^2.0.0"
-  },
-  "dependencies": {
     "gulp-csso": "^4.0.1",
     "gulp-imagemin": "^7.1.0",
+    "gulp-less": "^4.0.1",
     "gulp-rename": "^2.0.0",
+    "gulp-uglify-es": "^2.0.0",
     "gulp-webp": "^4.0.1",
-    "save-dev": "0.0.1-security"
+    "nodemon": "^2.0.3"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.5",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "helmet": "^3.22.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.9",
+    "morgan": "^1.10.0",
+    "pug": "^2.0.4",
+    "save-dev": "0.0.1-security",
+    "serve-favicon": "^2.5.0"
   }
 }
