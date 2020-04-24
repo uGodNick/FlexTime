@@ -1,83 +1,92 @@
 .profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .profile__wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto 20px auto;
-    min-height: 500px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid transparent;
-    min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  min-height: 500px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid transparent;
+  min-height: 250px;
 }
 
 .profile__image {
-    max-width: 500px;
+  max-width: 500px;
 }
 
 .profile__image img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
-.profile__name{
-    font-size: 28px;
-    margin: 10px 0 20px 0;
+.profile__name {
+  font-size: 28px;
+  margin: 10px 0 20px 0;
+}
+
+.profile__avatar {
+    max-width: 250px;
+    max-height: 250px;
 }
 
 .profile__form__name {
-    font-size: 28px;
-    margin: 0 0 20px 0;
+  font-size: 28px;
+  margin: 0 0 20px 0;
 }
 
 .profile__form,
 .profile__info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .profile__form div:not(:first-child),
 .profile__info div:not(:first-child) {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    width: 80%;
-    height: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 80%;
 }
 
 
 @media (min-width: @tablet-width) {
-    .profile__wrapper {
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: normal;
-        width: 80%;
-    }
+  .profile__wrapper {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: normal;
+    width: 80%;
+  }
 
-    .profile__info div:first-child {
-        display: flex;
-        justify-content: flex-start;
-        width: 80%;
-    }
+  .profile__info div:first-child {
+    display: flex;
+    justify-content: flex-start;
+    width: 80%;
+  }
 
-    .profile__name {
-        font-size: 30px;
-        margin-bottom: 30px;
-    }
+  .profile__name {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
 
-    .profile__info,
-    .profile__form {
-        width: 500px;
-    }
+  .profile__form div:not(:first-child),
+  .profile__info div:not(:first-child) {
+    height: 30px;
+  }
 
-    .profile__image {
-        width: 250px;
-    }
+  .profile__info,
+  .profile__form {
+    width: 500px;
+  }
+
+  .profile__image {
+    width: 250px;
+  }
 }

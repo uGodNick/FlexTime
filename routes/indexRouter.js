@@ -13,11 +13,10 @@ router.get('/login', index_controller.index_login);
 router.get('/contacts', index_controller.index_contacts);
 
 /* POST нового пользователя*/
-router.post('/', index_controller.user_create);
+router.post('/', index_controller.isExist ,index_controller.user_create);
 
 /* POST запрос на вход*/
 router.post('/login', index_controller.user_login);
-
 
 
 module.exports = router;

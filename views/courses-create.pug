@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  section.courses__create
+    h1 Создать курс
+    form.courses__create__form(method="post" action="")
+      div
+        label(for="course_name") Название
+        input(type="text" name="course_name" id="course_name" required='true')
+      div
+        label(for="course_theme") Тематика
+        input(type="text" name="course_theme" id="course_theme" required='true')
+      div
+        input(type="hidden" name="course_author" value=user_id)
+      div
+        label(for="course_content") Содержимое
+        textarea(type="text" name="course_content" id="course_content" required='true')
+      input.button(type="submit" value="Создать")

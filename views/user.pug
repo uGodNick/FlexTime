@@ -5,7 +5,7 @@ block content
       h1 Профиль
       .profile__wrapper
         .profile__image
-          img.profile__avatar(src="/img/profile.png" width="250" height="250")
+          img.profile__avatar(src=current_user.avatar width="250" height="250")
         .profile__info
           if is_user
             .profile__name #{user.username}
@@ -22,21 +22,21 @@ block content
             span.date-last-active__value #{current_user.last_active_date_formatted}
           if is_user
             div
-              form.profile__exit(method="post" action="logout")
-                input.button(type="submit" value="Выйти из аккаунта")
+              form.profile__exit.hidden(method="post" action="logout")
+                input.button(type="submit" value="Выйти")
               button.button.button__form-on.hidden Редактировать
-        form.profile__form.hidden(method="post")
-          input.profile__form__name(type="text" value=current_user.username)
+        form.profile__form.hidden(method="post" action="update" enctype="multipart/form-data")
+          input.profile__form__name(type="text" name="profile__form__name" value=current_user.username)
           div
             label(for="profile__form__password") Пароль
-            input#profile__form__password(type="password" value=current_user.password)
+            input#profile__form__password(type="password" name="profile__form__password" value=current_user.password)
           div
             label(for="profile__form__email") Почта
-            input#profile__form__email(type="email" value=current_user.email)
+            input#profile__form__email(type="email" name="profile__form__email" value=current_user.email)
           div
             label.button(for="profile__form__image") Загрузить фото
-            input#profile__form__image.profile__form__chooser.hidden(type="file")
+            input#profile__form__image.profile__form__chooser.hidden(type="file" name="profile__form__image")
             input.button.button__form-off(type="submit" value="Принять")
-  block script
-    script(src="../js/profile-form.min.js")
-    script(src="../js/avatar.min.js")
+block scripts
+  script(src="../js/profile-form.min.js")
+  script(src="../js/avatar.min.js")

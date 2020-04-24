@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  html
+    body
+      section.courses
+        h1 Курсы
+        .courses__item
+          img(src="../img/course_music.jpg" width="200" height="200")
+          .courses__item__content
+            .courses__item__content__top
+              a(href="courses/music")
+                h2.courses__name Музыка
+              p.courses__description
+                | Увлекаетесь музыкой или только хотите попробывать себя в этой области? Здесь ты можешь найти разные уроки, помогающие тебе познать эту область.
+              span.courses__count уроков #{courses_music_length}
+        .courses__item
+          img(src="../img/course_health.jpg" width="200" height="200")
+          .courses__item__content
+            .courses__item__content__top
+              a(href="courses/health")
+                h2.courses__name Здоровье
+              p.courses__description
+                | Каждый человек должен заниматься своим здоровьем, ведь без него никуда. Здесь вы найдете информацию о том, как следует заниматься своим телом.
+              span.courses__count уроков #{courses_health_length}

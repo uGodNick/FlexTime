@@ -1,16 +1,18 @@
 const User = require('../models/user');
 const async = require('async');
 const { check, validationResult } = require('express-validator');
-const { body} = require('express-validator');
+const { body } = require('express-validator');
 
 /// МАРШРУТЫ ГЛАВНОЙ СТАРНИЦЫ///
 
 // Отобразить главную страницу
-exports.index = function (req, res) {
+exports.index = function (req, res, next) {
   if (req.session.user) {
+    User.findOneAndUpdate({ '_id': req.session.user_id }, { 'last_active_date': new Date() }, function (err) {
+      if (err) { return next(err) }
+    });
     res.render('index', {
       title: 'Главная',
-      username: req.session.user.username,
       user: req.session.user,
       user_url: req.session.user_url
     });
@@ -19,14 +21,8 @@ exports.index = function (req, res) {
   }
 };
 
-// Отобразить страницу пользователя
-exports.index_user = function (req, res) {
-  user = req.session.user
-  res.render('user', { title: user.username, user: user, username: user.username })
-};
-
 // Отобразить страницу входа
-exports.index_login = function (req, res) {
+exports.index_login = function (req, res, next) {
   if (req.session.user) {
     res.redirect('/')
   } else if (req.session.new_login) {
@@ -39,6 +35,9 @@ exports.index_login = function (req, res) {
 // Отобразить страницу контактов
 exports.index_contacts = function (req, res) {
   if (req.session.user) {
+    User.findOneAndUpdate({ '_id': req.session.user_id }, { 'last_active_date': new Date() }, function (err) {
+      if (err) { return next(err) }
+    });
     res.render('contacts', {
       title: 'Контакты',
       username: req.session.user.username,
@@ -52,7 +51,6 @@ exports.index_contacts = function (req, res) {
 
 // Зарегистрировать пользователя
 exports.user_create = [
-
   // Валидация формы
   body('email')
     .isEmail()
@@ -65,7 +63,7 @@ exports.user_create = [
     .not().isEmpty()
     .trim()
     .escape(),
-  check('password').isLength({ min: 5 }),
+  check('password').isLength({ min: 8 }),
 
   // Процесс запроса после проверки формы
   (req, res, next) => {
@@ -96,6 +94,7 @@ exports.user_create = [
       });
     }
   }
+  
 ];
 
 // Вход пользователя
@@ -106,9 +105,15 @@ exports.user_login = function (req, res, next) {
       if (err) { return next(err); }
       if (user) {
         if (user.password === req.body.password) {
+
           req.session.user = user
           req.session.user_id = user._id
           req.session.user_url = user.url
+
+          User.findOneAndUpdate({ 'username': user.username }, { 'last_active_date': new Date() }, function (err, doc) {
+            if (err) { return next(err) }
+          });
+
           res.redirect(user.url)
         } else {
           res.render('login', { title: 'Вход', error: 'Неверный логин или пароль'})
@@ -120,3 +125,14 @@ exports.user_login = function (req, res, next) {
 
 };
 
+// Проверка на существующего пользователя
+exports.isExist = function (req, res, next) {
+  User.findOne({ 'username': req.body.username }).exec(function (err, user) {
+    if (user) {
+      res.redirect('back');
+
+    } else {
+      next();
+    }
+  })
+}

@@ -16,22 +16,23 @@ html(lang="ru")
           img(src="/img/logo.webp" width="300" height="110" alt="FlexTime")
         .main-nav__wrapper
           if user
-            a.main-nav__profile(href=user_url)
-              img(src="/img/profile.png" width="35" height="35")
+            a.main-nav__profile(href="/" + user_url)
+              img(src=user.avatar width="35" height="35")
               span.main-nav__name #{user.username}
           else
             a.main-nav__profile(href="/login")
               img(src="/img/profile.png" width="35" height="35")
               span.main-nav__name Войти
-          a.main-nav__apps(href="apps")
+          a.main-nav__apps(href="/apps")
             | Приложения
-          a.main-nav__courses(href="courses")
+          a.main-nav__courses(href="/courses")
             | Курсы
-    main.page-main
-      block content
-    footer.page-footer
-      a.contacts(href="/contacts") Контакты
-      span.copyright ©2020 FlexTime
-    script(src="/js/open-nav.min.js")
-    script(src="/js/swiper.min.js")
+    div.wrapper
+      main.page-main
+        block content
+      footer.page-footer
+        a.contacts(href="/contacts") Контакты
+        span.copyright ©2020 FlexTime
+  script(src="/js/open-nav.min.js")
+  script(src="/js/swiper.min.js")
   block scripts

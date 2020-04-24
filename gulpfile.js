@@ -7,6 +7,17 @@ const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 const minifyJs = require('gulp-uglify-es').default;
 const webp = require('gulp-webp');
+const nodemon = require('gulp-nodemon');
+
+function start(done) {
+  nodemon({
+    script: './bin/www'
+    , ext: 'js html json pug'
+    , env: { 'NODE_ENV': 'development' }
+    , done: done
+  });
+  done();
+}
 
 function style(done) {
   gulp.src('./source/less/style.less')
@@ -63,4 +74,4 @@ function watchFiles(done) {
   done()
 }
 
-gulp.task('default', gulp.parallel(watchFiles, minImages, convertIntoWebp));
+gulp.task('default', gulp.parallel(start, watchFiles, minImages, convertIntoWebp));

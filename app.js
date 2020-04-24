@@ -6,6 +6,9 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
+
+
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -14,6 +17,7 @@ const MongoStore = require('connect-mongo')(session);
 //Переменные навигации
 const indexRouter = require('./routes/indexRouter');
 const userRouter = require('./routes/userRouter');
+const coursesRouter = require('./routes/coursesRouter');
 
 const compression = require('compression');
 const helmet = require('helmet');
@@ -40,6 +44,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
 app.use(compression());
+app.use(morgan())
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -52,13 +58,19 @@ app.use(
     saveUninitialized: false,
     store: new MongoStore({
       mongooseConnection: db
-    })
+    }),
+    cookie: {
+      secure: false,
+      httpOnly: true,
+      maxAge: 365 * 24 * 60 * 60 * 1000
+    }
   })
 );
 
 //Установка путей
 app.use('/', indexRouter);
 app.use('/users', userRouter);
+app.use('/courses', coursesRouter);
 
 //Ловля ошибок и передача их в обработчик ошибок
 app.use(function (req, res, next) {

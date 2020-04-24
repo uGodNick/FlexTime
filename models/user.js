@@ -8,9 +8,10 @@ const UserSchema = new Schema(
     password: { type: String, required: true, min: 8, max: 24 },
     email: { type: String, required: true },
     register_date: { type: Date, default: Date.now },
-    last_active_date: { type: Date },
+    last_active_date: { type: Date, default: Date.now  },
     rating: { type: Number, default: 0 },
-    admin_root: { type: Boolean, default: false}
+    avatar: { type: String, default: '/img/profile.png' },
+    admin_root: { type: Boolean, default: false }
   }
 );
 

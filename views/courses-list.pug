@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  section.courses-list
+    .courses-list__header
+      h1 #{title}
+      if user
+        a.button.button__make-course(href="/courses/create") Создать собственный
+    if courses_list
+      each course in courses_list
+        .courses-list__item
+          a(href=course.url)
+          h2.courses-list__name #{course.title}
+          span.courses-list__date #{course.create_date_formatted}
