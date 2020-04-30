@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 
 const ContentSchema = new Schema(
   {
-    content: { type: String }
+    keys: [{ type: String}],
+    content: [{ type: String }]
   }
 );
 

@@ -93,29 +93,34 @@ exports.courses_create =  [
     .not().isEmpty()
     .trim()
     .escape(),
-  body('course_content')
-    .not().isEmpty()
-    .trim()
-    .escape(),
   body('course_theme')
     .not().isEmpty()
     .trim(),
-
+  
   (req, res, next) => {
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
       //Отображение всех ошибок после валидации
-      res.render('courses-create', { title: 'Ошибка' });
+      res.render('error', { title: 'Ошибка' , errors: errors.array() });
       return;
     } else {
 
-      let content = new CourseContent({
-        content: req.body.course_content
-      })
+      let contentArr = req.body.course_content.split('-')
+      let contentConstructor = {
+        keys: contentArr,
+        content: []
+      }
+
+      for (let i = 0; i < contentArr.length; i++) {
+        contentConstructor.content.push(req.body[contentArr[i]])
+      }
+      console.log(contentConstructor)
+
+      let content = new CourseContent(contentConstructor)
       content.save(function (err) {
         if (err) { return next(err); }
         // Создание контента завершено
-        CourseContent.findOne({ 'content': req.body.course_content }).exec(function (err, courseContent) {
+        CourseContent.findOne({ 'keys': contentArr }).exec(function (err, courseContent) {
           if (err) { return next(err); }
           let course = new Course(
             {
@@ -167,3 +172,4 @@ exports.course_content = function (req, res, next) {
     }
   })
 }
+

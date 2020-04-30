@@ -4,10 +4,17 @@
   const addImage = document.querySelector('.button__course-add_image');
   const addText = document.querySelector('.button__course-add_text');
   const content = document.querySelector('.create__form__content');
+  const contentCount = document.querySelector('.create__form__content__count');
 
+  let contentArr = []
   let countBlock = 1;
 
-  addInput = function (type, id, clas) {
+  const addContent = function () {
+    
+    contentCount.value = contentArr.join('-')
+  }
+
+  const addInput = function (type, id, clas) {
     const templateItem = document.querySelector('.content__block__input')
       .content
       .querySelector(".form__content__block");
@@ -17,7 +24,7 @@
     let contentInput = contentBlock.querySelector('input');
 
     contentInput.type = type;
-    contentInput.name = 'block' + id;
+    contentInput.name = id;
     contentBlock.id = id
 
     contentInput.classList.add(clas);
@@ -25,8 +32,9 @@
     contentClose.addEventListener('click', function (evt) {
       evt.preventDefault();
       countBlock = Number(countBlock) - 1;
+      contentArr.pop()
       let block = document.getElementById(id);
-
+      addContent()
       block.remove();
     })
 
@@ -34,7 +42,7 @@
     content.append(contentBlock);
   }
 
-  addArea = function (type, id, clas) {
+  const addArea = function (id, clas) {
     const templateItem = document.querySelector('.content__block__textarea')
       .content
       .querySelector(".form__content__block");
@@ -43,8 +51,7 @@
     let contentClose = contentBlock.querySelector('.content__block__close')
     let contentArea = contentBlock.querySelector('textarea');
 
-    contentArea.type = type;
-    contentArea.name = 'block' + id;
+    contentArea.name = id;
     contentBlock.id = id
 
     contentArea.classList.add(clas);
@@ -52,8 +59,9 @@
     contentClose.addEventListener('click', function (evt) {
       evt.preventDefault();
       countBlock = Number(countBlock) - 1;
+      contentArr.pop()
       let block = document.getElementById(id);
-
+      addContent()
       block.remove();
     })
 
@@ -63,17 +71,29 @@
 
   addTitle.addEventListener('click', function (evt) {
     evt.preventDefault();
-    addInput('text', countBlock, 'content__block__input_title')
+    let identificator = countBlock + 't'
+    contentArr.push(identificator)
+    addInput('text', identificator, 'content__block__input_title');
+    
+    addContent()
   })
 
   addImage.addEventListener('click', function (evt) {
     evt.preventDefault();
-    addInput('file', countBlock, 'ontent__block__input_image')
+    let identificator =  countBlock + 'i'
+    contentArr.push(identificator)
+    addInput('file', identificator, 'content__block__input_image')
+    
+    addContent()
   })
 
   addText.addEventListener('click', function (evt) {
     evt.preventDefault();
-    addArea('text', countBlock, 'content__block__input_text')
+    let identificator = countBlock + 'p'
+    contentArr.push(identificator)
+    addArea(identificator, 'content__block__input_text')
+    
+    addContent()
   })
 
 })();

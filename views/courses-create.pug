@@ -14,10 +14,11 @@ block content
           select(name="course_theme" id="course_theme")
             option(value="music") Музыка
             option(value="health") Здоровье
+        div.create__form__block
+          label(for="course_content") Блоки
+          input.create__form__content__count(type="text" name="course_content" id="course_content" required="true")
         div.hidden-object
           input(type="hidden" name="course_author" value=user_id)
-        div.hidden-object
-          input.create__form_blocks(type="hidden" name="course_block_count" value='')
       div.create__form__content
         h2 Содержимое курса
         div.create__tools
@@ -27,11 +28,11 @@ block content
         template.content__block__input
           .form__content__block(id='0')
             button.button.content__block__close (X)
-            input(type="text" name="content_block")
+            input(type="text" name="content_block" required="true")
         template.content__block__textarea
           .form__content__block(id='0')
             button.button.content__block__close (X)
-            textarea(type="text" name='content_block')
+            textarea(type="text" name="content_block" required="true")
       input.button.create__form__button(type="submit" value="Создать")
 block scripts
   script(src="/js/course-constructor.min.js")

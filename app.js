@@ -44,7 +44,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
 app.use(compression());
-app.use(morgan())
 
 
 app.use(express.static(path.join(__dirname, 'public')));
