@@ -9,8 +9,9 @@ const CourseSchema = new Schema(
     author: { type: Schema.ObjectId, ref: 'User' },
     create_date: { type: Date, default: Date.now },
     theme: { type: String, required: true, enum: ['music', 'health', 'other'] },
-    content: { type: Schema.ObjectId, ref: 'course-content' },
-    comments: [{ type: Schema.ObjectId, ref: 'course-comment'}]
+    content: { type: Schema.ObjectId, ref: 'Content' },
+    comments: [{ type: Schema.ObjectId, ref: 'Comment' }],
+    rating: { type: Number, default: 0}
   }
 );
 

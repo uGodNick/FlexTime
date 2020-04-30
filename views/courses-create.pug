@@ -2,17 +2,36 @@ extends layout
 
 block content
   section.courses__create
-    h1 Создать курс
+    .courses__create__header
+      h1 #{title}
     form.courses__create__form(method="post" action="")
-      div
-        label(for="course_name") Название
-        input(type="text" name="course_name" id="course_name" required='true')
-      div
-        label(for="course_theme") Тематика
-        input(type="text" name="course_theme" id="course_theme" required='true')
-      div
-        input(type="hidden" name="course_author" value=user_id)
-      div
-        label(for="course_content") Содержимое
-        textarea(type="text" name="course_content" id="course_content" required='true')
-      input.button(type="submit" value="Создать")
+      div.create__form__main-info
+        div.create__form__block
+          label(for="course_name") Название
+          input(type="text" name="course_name" id="course_name" required='true' maxlength="30")
+        div.create__form__block
+          label(for="course_theme") Тематика
+          select(name="course_theme" id="course_theme")
+            option(value="music") Музыка
+            option(value="health") Здоровье
+        div.hidden-object
+          input(type="hidden" name="course_author" value=user_id)
+        div.hidden-object
+          input.create__form_blocks(type="hidden" name="course_block_count" value='')
+      div.create__form__content
+        h2 Содержимое курса
+        div.create__tools
+          button.button.button__course-add_title Заголовок
+          button.button.button__course-add_text Параграф
+          button.button.button__course-add_image Изображение
+        template.content__block__input
+          .form__content__block(id='0')
+            button.button.content__block__close (X)
+            input(type="text" name="content_block")
+        template.content__block__textarea
+          .form__content__block(id='0')
+            button.button.content__block__close (X)
+            textarea(type="text" name='content_block')
+      input.button.create__form__button(type="submit" value="Создать")
+block scripts
+  script(src="/js/course-constructor.min.js")

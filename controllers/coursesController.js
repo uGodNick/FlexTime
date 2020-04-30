@@ -40,6 +40,7 @@ exports.courses_index = function (req, res) {
 
 exports.courses_music_list = function (req, res) {
   Course.find({ 'theme': 'music' }).exec(function (err, courses_list) {
+    if (err) { return next(err); }
     if (req.session.user) {
       if (courses_list.length == 0) {
         res.render('courses-list', { title: 'Курсы|Музыка', user: req.session.user, user_url: req.session.user_url})
@@ -134,3 +135,35 @@ exports.courses_create =  [
     }
     }
 ]
+
+exports.course_content = function (req, res, next) {
+  Course.findOne({ '_id': req.params.id })
+    .populate('content')
+    .exec(function (err, course) {
+      if (err) { return next(err); }
+      if (course) {
+        upRating = course.rating + 1
+        Course.findOneAndUpdate({ '_id': req.params.id }, { 'rating': upRating}, function (err, doc) {
+          if (err) { return next(err) }
+        });
+        if (req.session.user) {
+          res.render('course', {
+            title: 'Курсы',
+            course: course,
+            content: course.content.content,
+            user: req.session.user,
+            user_url: req.session.user_url
+          })
+        } else {
+          res.render('course', {
+            title: 'Курсы',
+            course: course,
+            content: course.content.content
+          })
+        }
+        
+    } else {
+      res.redirect('back')
+    }
+  })
+}

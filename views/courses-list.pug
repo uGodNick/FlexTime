@@ -9,6 +9,7 @@ block content
     if courses_list
       each course in courses_list
         .courses-list__item
-          a(href=course.url)
-          h2.courses-list__name #{course.title}
+          h2.courses-list__name
+            a(href=course.url) #{course.title}
           span.courses-list__date #{course.create_date_formatted}
+          span.courses-list__rating рейтинг: #{course.rating}

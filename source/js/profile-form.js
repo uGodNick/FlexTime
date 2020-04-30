@@ -1,3 +1,4 @@
+'use strict'
 (function () {
     const button = document.querySelector('.button__form-on');
     const profileInfo = document.querySelector('.profile__info');

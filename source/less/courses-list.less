@@ -19,24 +19,29 @@
 }
 
 .courses-list__item {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	width: 80%;
-	align-items: center;
-	margin: 10px auto 0 auto;
-	border-bottom: 2px solid @main-background;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  min-height: 100px;
+  align-items: center;
+  margin: 10px auto 0 auto;
+  border-bottom: 2px solid @main-background;
+}
+
+.courses-list__item:nth-last-of-type(1) {
+  border-bottom: none;
 }
 
 .courses-list__date {
-	display: none;
-	position: absolute;
-	bottom: 15px;
-	right: 10px;
+  display: none;
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
 }
 
 .courses-list__item h2 {
-	font-size: 20px;
+	font-size: 24px;
 }
 
 @media (min-width: @tablet-width) {

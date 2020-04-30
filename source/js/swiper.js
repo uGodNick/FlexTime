@@ -1,5 +1,4 @@
 'use strict';
-
 (function () {
 	const swiper = document.querySelectorAll('.swiper');
 

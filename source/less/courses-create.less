@@ -2,10 +2,140 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
-.courses__create div {
+.courses__create__header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.courses__create__form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.create__form__main-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create__form__block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 20px auto 0 auto;
+}
+
+.create__form__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.create__tools {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form__content__block {
+  position: relative;
+  display: flex;
+  width: 80%;
+  margin: 20px auto 0 auto;
+}
+
+.content__block__close {
+  display: none;
+}
+
+.form__content__block:nth-last-of-type(1) .content__block__close {
+    display: block;
+}
+
+.content__block__close {
+  position: absolute;
+  right: 0;
+}
+
+.form__content__block input {
+  width: 100%;
+}
+
+.content__block__input_title {
+  height: 30px;
+}
+
+.content__block__input_text {
+  min-height: 100px;
+}
+
+.content__block__input_image {
+
+}
+
+.create__form__block input,
+.create__form__block select,
+.create__form__block button {
+  width: 250px;
+}
+
+.create__form__button {
+  align-items: center;
+  width: 80%;
+  margin: 20px auto 40px;
+}
+
+@media (min-width: @tablet-width) {
+
+  .courses__create {
+    align-items: normal;
+  }
+
+  .create__form__block {
+    align-items: normal;
+  }
+
+  .create__form__content {
+    align-items: normal;
+  }
+
+  .create__form__main-info {
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 80%;
+  }
+
+  .create__form__content .create__tools {
+    width: 80%;
+    margin: 20px auto 0 auto;
+  }
+
+  .create__form__content h2 {
+    width: 80%;
+    margin: 30px auto 20px auto;
+  }
+
+  .courses__create__header {
+    margin-bottom: 0;
+  }
+
+  .create__tools {
+    flex-direction: row;
+  }
+
+  .create__tools button {
+    width: 30%;
+  }
 }
