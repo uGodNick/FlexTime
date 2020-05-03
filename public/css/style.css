@@ -128,7 +128,7 @@
   font-weight: 400;
 }
 .page-main h2 {
-  font-size: 34px;
+  font-size: 30px;
   font-weight: 400;
 }
 .wrapper {
@@ -455,7 +455,7 @@
     width: 35%;
   }
   .contacts__form textarea {
-    width: 99%;
+    min-height: 220px;
   }
 }
 .profile {
@@ -700,7 +700,7 @@
   height: 30px;
 }
 .content__block__input_text {
-  min-height: 100px;
+  min-height: 220px;
 }
 .create__form__block input,
 .create__form__block select,
@@ -750,9 +750,88 @@
   flex-direction: column;
   align-items: center;
 }
+.content__image {
+  width: 50%;
+  margin: 0 auto 0 auto;
+}
 .course__content {
+  display: flex;
+  justify-content: center;
   width: 80%;
-  margin: 20px auto 40px;
+  margin: 0 auto 0;
+}
+.course__info {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+.course__info__rating {
+  display: flex;
+}
+.course__info__rating form {
+  margin-right: 5px;
+}
+.like__active {
+  background-color: #00ff21;
+}
+.dislike__active {
+  background-color: #ff0000;
+}
+.info__rating {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.course__create__comment {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.course__create__comment .button {
+  align-self: flex-end;
+}
+.course__create__comment textarea {
+  min-height: 100px;
+  margin-bottom: 10px;
+}
+.course__comments {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20px auto;
+}
+.course__comment {
+  width: 100%;
+  min-height: 100px;
+  border-bottom: 2px solid #121212;
+  margin-bottom: 5px;
+}
+.comment__wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.course__comment img {
+  width: 50px;
+}
+.comment__author {
+  display: flex;
+  align-items: center;
+}
+.comment__nickname {
+  font-size: 20px;
+  margin-left: 7px;
+}
+.comment__info {
+  display: flex;
+  flex-direction: column;
+}
+.comment__rating {
+  display: flex;
+  align-items: center;
+}
+.comment__rating form {
+  margin-right: 5px;
 }
 html {
   height: 100%;
@@ -792,8 +871,7 @@ select {
 textarea {
   background-color: #121212;
   color: #fff;
-  width: 100%;
-  height: 220px;
+  width: 99%;
   resize: none;
   border: 2px solid #fff;
 }

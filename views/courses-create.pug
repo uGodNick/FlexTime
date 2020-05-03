@@ -4,11 +4,11 @@ block content
   section.courses__create
     .courses__create__header
       h1 #{title}
-    form.courses__create__form(method="post" action="")
+    form.courses__create__form(method="post" action="" enctype="multipart/form-data")
       div.create__form__main-info
         div.create__form__block
           label(for="course_name") Название
-          input(type="text" name="course_name" id="course_name" required='true' maxlength="30")
+          input(type="text" name="course_name" id="course_name" required='true' maxlength="50")
         div.create__form__block
           label(for="course_theme") Тематика
           select(name="course_theme" id="course_theme")

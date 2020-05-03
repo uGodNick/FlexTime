@@ -8,7 +8,9 @@ const CommentSchema = new Schema(
     author: { type: Schema.ObjectId, ref: 'User' },
     content: { type: String, maxlength: 500 },
     create_date: { type: Date, default: Date.now },
-    course: { type: Schema.ObjectId, ref: 'Course' }
+    like_by: [{ type: Schema.ObjectId, ref: 'User' }],
+    dislike_by: [{ type: Schema.ObjectId, ref: 'User' }],
+    rating: { type: Number, default: 0}
   }
 );
 

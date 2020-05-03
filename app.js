@@ -6,18 +6,17 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
-
-
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
+const fileUpload = require('express-fileupload');
 
 //Переменные навигации
 const indexRouter = require('./routes/indexRouter');
 const userRouter = require('./routes/userRouter');
 const coursesRouter = require('./routes/coursesRouter');
+const appsRouter = require('./routes/appsRouter');
 
 const compression = require('compression');
 const helmet = require('helmet');
@@ -45,9 +44,10 @@ app.use(cookieParser());
 app.use(helmet());
 app.use(compression());
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.use(fileUpload());
 
 //Использование сессий с хранением ключа в MongoDB
 app.use(
@@ -70,6 +70,7 @@ app.use(
 app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.use('/courses', coursesRouter);
+app.use('/apps', appsRouter);
 
 //Ловля ошибок и передача их в обработчик ошибок
 app.use(function (req, res, next) {
@@ -84,7 +85,11 @@ app.use(function (err, req, res, next) {
 
   // Рендер страницы с ошибкой
   res.status(err.status || 500);
-  res.render('error', {title: 'Ошибка'});
+  if (req.session.user) {
+    res.render('error', { title: 'Ошибка', user: req.session.user, user_url: req.session.user_url });
+  } else {
+    res.render('error', { title: 'Ошибка'});
+  }
 });
 
 module.exports = app;

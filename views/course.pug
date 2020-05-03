@@ -3,4 +3,65 @@ extends layout
 block content
   section.course
     h1 #{course.title}
-    div.course__content #{content}
+    -for(let i = 0; i < content.keys.length; i++)
+      - let key = content.keys[i] 
+      if key[0] == 't'
+        .course__content
+          h2.content__title #{content.content[i]}
+      if key[0] == 'i'
+        .course__content
+          img.content__image(src=content.content[i])
+      if key[0] == 'p'
+        .course__content
+          p.content__text #{content.content[i]}
+    .course__info
+      .course__info__rating
+        if user
+          if isLikeCourse == true
+            form.course__like(method="POST")
+              input.like__active(type="submit" value="👍" disabled="true")
+          if isLikeCourse == false
+            form.course__like(method="POST" action= "course" + course._id + "/likeCourse")
+              input(type="submit" value="👍")
+          if isDislikeCourse == true
+            form.course__dislike(method="POST" disabled="true")
+              input.dislike__active(type="submit" value="👎" disabled="true")
+          if isDislikeCourse == false
+            form.course__dislike(method="POST" action="course" + course._id + "/dislikeCourse")
+              input(type="submit" value="👎")
+        .info__rating #{course.rating}
+      .course__info__author Автор: 
+        a(href="../../" + author.url name="author") #{author.username}
+    if (user)
+      form.course__create__comment(method="POST" action="course" + course._id + "/create_comment")
+        h2 Оставить комментарий
+        textarea(name="course_comment")
+        input.button(type="submit" value="Оставить комментарий")
+    if (comments[0] !== 0)
+      .course__comments
+        each comment in comments
+          .course__comment
+            .comment__wrapper
+              a.comment__author(href='../' + comment.author.url)
+                img(src=comment.author.avatar)
+                span.comment__nickname #{comment.author.username}
+              .comment__info
+                span.comment__date #{comment.create_date_formatted}
+                .comment__rating 
+                  if user
+                    if comment.like_by.indexOf(user_id) != -1
+                      form(method="POST")
+                        input.like__active(type="submit" value="👍" disabled="true")
+                    else
+                      form(method="POST" action= "course" + course._id + "/likeComment" + comment._id)
+                        input(type="submit" value="👍")
+                    if comment.dislike_by.indexOf(user_id) != -1
+                      form(method="POST")
+                        input.dislike__active(type="submit" value="👎" disabled="true")
+                    else
+                      form(method="POST" action="course" + course._id + "/dislikeComment" + comment._id)
+                        input(type="submit" value="👎")
+                  span #{comment.rating}
+            .comment__content #{comment.content}
+              
+            

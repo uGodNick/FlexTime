@@ -71,7 +71,7 @@
 
   addTitle.addEventListener('click', function (evt) {
     evt.preventDefault();
-    let identificator = countBlock + 't'
+    let identificator = 't' + countBlock
     contentArr.push(identificator)
     addInput('text', identificator, 'content__block__input_title');
     
@@ -80,7 +80,7 @@
 
   addImage.addEventListener('click', function (evt) {
     evt.preventDefault();
-    let identificator =  countBlock + 'i'
+    let identificator = 'i' + countBlock
     contentArr.push(identificator)
     addInput('file', identificator, 'content__block__input_image')
     
@@ -89,7 +89,7 @@
 
   addText.addEventListener('click', function (evt) {
     evt.preventDefault();
-    let identificator = countBlock + 'p'
+    let identificator = 'p' + countBlock
     contentArr.push(identificator)
     addArea(identificator, 'content__block__input_text')
     

@@ -5,12 +5,14 @@ const Schema = mongoose.Schema;
 
 const CourseSchema = new Schema(
   {
-    title: { type: String, required: true, max: 30 },
+    title: { type: String, required: true, max: 50 },
     author: { type: Schema.ObjectId, ref: 'User' },
     create_date: { type: Date, default: Date.now },
     theme: { type: String, required: true, enum: ['music', 'health', 'other'] },
     content: { type: Schema.ObjectId, ref: 'Content' },
     comments: [{ type: Schema.ObjectId, ref: 'Comment' }],
+    like_by: [{ type: Schema.ObjectId, ref: 'User' }],
+    dislike_by: [{ type: Schema.ObjectId, ref: 'User' }],
     rating: { type: Number, default: 0}
   }
 );
