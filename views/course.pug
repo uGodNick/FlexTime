@@ -2,7 +2,13 @@ extends layout
 
 block content
   section.course
-    h1 #{course.title}
+    .course__title
+      h1 #{course.title}
+      a(name="top")
+      if user_id
+        if course.author._id == user_id || user.admin_root
+          form(action="course" + course._id + '/delete_course' method='POST')
+            input(type='submit' value='X')
     -for(let i = 0; i < content.keys.length; i++)
       - let key = content.keys[i] 
       if key[0] == 't'
@@ -21,7 +27,7 @@ block content
             form.course__like(method="POST")
               input.like__active(type="submit" value="👍" disabled="true")
           if isLikeCourse == false
-            form.course__like(method="POST" action= "course" + course._id + "/likeCourse")
+            form.course__like(method="POST" action="course" + course._id + "/likeCourse")
               input(type="submit" value="👍")
           if isDislikeCourse == true
             form.course__dislike(method="POST" disabled="true")
@@ -32,6 +38,7 @@ block content
         .info__rating #{course.rating}
       .course__info__author Автор: 
         a(href="../../" + author.url name="author") #{author.username}
+        a.course__up.button(href="#top") ↑    
     if (user)
       form.course__create__comment(method="POST" action="course" + course._id + "/create_comment")
         h2 Оставить комментарий
@@ -42,9 +49,13 @@ block content
         each comment in comments
           .course__comment
             .comment__wrapper
-              a.comment__author(href='../' + comment.author.url)
+              a.comment__author(name='comment' + comment._id href='../' + comment.author.url)
                 img(src=comment.author.avatar)
                 span.comment__nickname #{comment.author.username}
+                if user_id
+                  if comment.author._id == user_id || user.admin_root
+                    form(action="course" + course._id + '/delete_comment' + comment._id method='POST')
+                      input(type='submit' value='X')
               .comment__info
                 span.comment__date #{comment.create_date_formatted}
                 .comment__rating 
@@ -62,6 +73,5 @@ block content
                       form(method="POST" action="course" + course._id + "/dislikeComment" + comment._id)
                         input(type="submit" value="👎")
                   span #{comment.rating}
-            .comment__content #{comment.content}
-              
+            .comment__content #{comment.content}        
             

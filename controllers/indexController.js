@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Course = require('../models/course')
 const async = require('async');
 const { check, validationResult } = require('express-validator');
 const { body } = require('express-validator');
@@ -8,16 +9,33 @@ const { body } = require('express-validator');
 // Отобразить главную страницу
 exports.index = function (req, res, next) {
   if (req.session.user) {
+
     User.findOneAndUpdate({ '_id': req.session.user_id }, { 'last_active_date': new Date() }, function (err) {
       if (err) { return next(err) }
     });
-    res.render('index', {
-      title: 'Главная',
-      user: req.session.user,
-      user_url: req.session.user_url
-    });
+    async.parallel({
+      courses_list_last: function (callback) {
+        Course.find().sort({ create_date: -1 }).limit(5)
+          .exec(callback)
+      },
+      courses_list_hot: function (callback) {
+        Course.find().sort({ rating: -1 }).limit(5)
+          .exec(callback)
+      },
+    }, function (err, results) {
+      if (err) { return next(err); }
+      res.render('index', {
+        title: 'Главная',
+        user: req.session.user,
+        user_url: req.session.user_url,
+        courses_list_last: results.courses_list_last,
+        courses_list_hot: results.courses_list_hot
+      });
+      
+    })
+
   } else {
-    res.render('index', { title: 'Главная'});
+    res.render('index', { title: 'Главная' });
   }
 };
 
@@ -94,7 +112,7 @@ exports.user_create = [
       });
     }
   }
-  
+
 ];
 
 // Вход пользователя
@@ -116,7 +134,7 @@ exports.user_login = function (req, res, next) {
 
           res.redirect(user.url)
         } else {
-          res.render('login', { title: 'Вход', error: 'Неверный логин или пароль'})
+          res.render('login', { title: 'Вход', error: 'Неверный логин или пароль' })
         }
       } else {
         res.render('login', { title: 'Вход', error: 'Неверный логин или пароль' })

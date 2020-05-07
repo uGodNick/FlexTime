@@ -1,6 +1,7 @@
 const Course = require('../models/course');
 const CourseContent = require('../models/course-content');
 const CourseComment = require('../models/course-comment');
+const User = require('../models/user')
 const { check, validationResult } = require('express-validator');
 const { body } = require('express-validator');
 const path = require('path');
@@ -40,7 +41,9 @@ exports.courses_index = function (req, res) {
 }
 
 exports.courses_music_list = function (req, res) {
-  Course.find({ 'theme': 'music' }).exec(function (err, courses_list) {
+  Course.find({ 'theme': 'music' })
+    .sort({create_date: -1})
+    .exec(function (err, courses_list) {
     if (err) { return next(err); }
     if (req.session.user) {
       if (courses_list.length == 0) {
@@ -64,7 +67,9 @@ exports.courses_music_list = function (req, res) {
 }
 
 exports.courses_health_list = function (req, res) {
-  Course.find({ 'theme': 'health' }).exec(function (err, courses_list) {
+  Course.find({ 'theme': 'health' })
+    .sort({ create_date: -1 })
+    .exec(function (err, courses_list) {
     if (req.session.user) {
       if (courses_list.length == 0) {
         res.render('courses-list', { title: 'Курсы|Здоровье', user: req.session.user, user_url: req.session.user_url })
@@ -72,7 +77,8 @@ exports.courses_health_list = function (req, res) {
         res.render('courses-list', {
           title: 'Курсы|Здоровье',
           courses_list: courses_list,
-          user: req.session.user
+          user: req.session.user,
+          user_url: req.session.user_url
         })
       }
     } else {
@@ -151,6 +157,13 @@ exports.courses_create = [
   }
 ]
 
+exports.course_delete = function (req, res, next) {
+  Course.findByIdAndRemove(req.params.id, function (err) {
+    if (err) { return next(err) }
+    res.redirect('/courses')
+});
+}
+
 exports.course_content = function (req, res, next) {
   Course.findOne({ '_id': req.params.id })
     .populate('author')
@@ -214,19 +227,27 @@ exports.course_like = function (req, res, next) {
     if (course) {
       if (err) { return next(err) }
       let dislikeList = course.dislike_by
-      let upRating = Number(course.rating) + 20
+      let courseRating = Number(course.rating) + 20
+      let userRating = 5
 
       if (dislikeList.indexOf(req.session.user_id) != -1) {
         dislikeList.splice(dislikeList.indexOf(req.session.user_id), 1)
-        upRating += 20
+        courseRating += 20
+        userRating += 5
       }
+
+      User.findOne({ '_id': course.author }).exec(function (err, user) {
+        if (err) { return next(err) }
+        user.rating += userRating
+        user.save()
+      })
 
       
       let likeList = course.like_by
       likeList.push(req.session.user_id)
-      Course.findOneAndUpdate({ '_id': req.params.id }, { 'dislike_by': dislikeList, 'like_by': likeList, 'rating': upRating }, function (err, doc) {
+      Course.findOneAndUpdate({ '_id': req.params.id }, { 'dislike_by': dislikeList, 'like_by': likeList, 'rating': courseRating }, function (err, doc) {
         if (err) { return next(err) }
-        res.redirect('back')
+        res.redirect('../course' + req.params.id + '#author')
       })
     }
     
@@ -239,19 +260,26 @@ exports.course_dislike = function (req, res, next) {
     if (course) {
       if (err) { return next(err) }
       let likeList = course.like_by
-      let downRating = Number(course.rating) - 20
+      let courseRating = Number(course.rating) - 20
+      let userRating = 5
 
       if (likeList.indexOf(req.session.user_id) != -1) {
         likeList.splice(likeList.indexOf(req.session.user_id), 1)
-        downRating -= 20
+        courseRating -= 20
+        userRating += 5
       }
 
+      User.findOne({ '_id': course.author }).exec(function (err, user) {
+        if (err) { return next(err) }
+        user.rating -= userRating
+        user.save()
+      })
       
       let dislikeList = course.dislike_by
       dislikeList.push(req.session.user_id)
-      Course.findOneAndUpdate({ '_id': req.params.id }, { 'like_by': likeList, 'dislike_by': dislikeList, 'rating': downRating }, function (err, doc) {
+      Course.findOneAndUpdate({ '_id': req.params.id }, { 'like_by': likeList, 'dislike_by': dislikeList, 'rating': courseRating }, function (err, doc) {
         if (err) { return next(err) }
-        res.redirect('back')
+        res.redirect('../course' + req.params.id + '#author')
       })
     }
 
@@ -283,10 +311,11 @@ exports.course_create_comment = [
           Course.findOne({ '_id': req.params.id }).exec(function (err, course) {
             if (err) { return next(err) }
             let commentList = course.comments
+            let courseRating = course.rating + 2
             commentList.push(comment._id)
-            Course.findOneAndUpdate({ '_id': req.params.id }, { 'comments': commentList }, function (err) {
+            Course.findOneAndUpdate({ '_id': req.params.id }, { 'comments': commentList, 'rating': courseRating }, function (err) {
               if (err) { return next(err) }
-              res.redirect('back')
+              res.redirect('../course' + req.params.id + '#author')
             })
           })
         })
@@ -299,22 +328,37 @@ exports.course_create_comment = [
   }
 ]
 
+exports.course_delete_comment = function (req, res, next) {
+  CourseComment.findByIdAndRemove({ '_id': req.params.commentId }, function (err) {
+    if (err) { return next(err) }
+    res.redirect('../course' + req.params.courseId + '#author')
+  })
+}
+
 exports.course_comment_like = function (req, res, next) {
   CourseComment.findOne({ '_id': req.params.commentId }).exec(function (err, comment) {
     if (comment) {
       if (err) { return next(err) }
       let dislikeList = comment.dislike_by
-      let upRating = Number(comment.rating) + 5
+      let commentRating = Number(comment.rating) + 1
+      let userRating = 2
       if (dislikeList.indexOf(req.session.user_id) != -1) {
         dislikeList.splice(dislikeList.indexOf(req.session.user_id), 1)
-        upRating += 5
+        commentRating += 1
+        userRating += 2
       }
+
+      User.findOne({ '_id': comment.author._id }).exec(function (err, user) {
+        if (err) { return next(err) }
+        user.rating += userRating
+        user.save()
+      })
       
       let likeList = comment.like_by
       likeList.push(req.session.user_id)
-      CourseComment.findOneAndUpdate({ '_id': req.params.commentId }, { 'dislike_by': dislikeList, 'like_by': likeList, 'rating': upRating }, function (err, doc) {
+      CourseComment.findOneAndUpdate({ '_id': req.params.commentId }, { 'dislike_by': dislikeList, 'like_by': likeList, 'rating': commentRating }, function (err, doc) {
         if (err) { return next(err) }
-        res.redirect('back')
+        res.redirect('../course' + req.params.courseId + '#'+ 'comment' + req.params.commentId)
       })
     }
 
@@ -326,19 +370,27 @@ exports.course_comment_dislike = function (req, res, next) {
     if (comment) {
       if (err) { return next(err) }
       let likeList = comment.like_by
-      let downRating = Number(comment.rating) - 5
+      let commentRating = Number(comment.rating) - 1
+      let userRating = 2
 
       if (likeList.indexOf(req.session.user_id) != -1) {
         likeList.splice(likeList.indexOf(req.session.user_id), 1)
-        downRating -= 5
+        commentRating -= 1
+        userRating += 2
       }
+
+      User.findOne({ '_id': comment.author._id }).exec(function (err, user) {
+        if (err) { return next(err) }
+        user.rating += userRating
+        user.save()
+      })
 
       
       let dislikeList = comment.dislike_by
       dislikeList.push(req.session.user_id)
-      CourseComment.findOneAndUpdate({ '_id': req.params.commentId }, { 'dislike_by': dislikeList, 'like_by': likeList, 'rating': downRating }, function (err, doc) {
+      CourseComment.findOneAndUpdate({ '_id': req.params.commentId }, { 'dislike_by': dislikeList, 'like_by': likeList, 'rating': commentRating }, function (err, doc) {
         if (err) { return next(err) }
-        res.redirect('back')
+        res.redirect('../course' + req.params.courseId + '#' + 'comment' + req.params.commentId)
       })
     }
 

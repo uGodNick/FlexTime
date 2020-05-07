@@ -12,8 +12,6 @@ exports.user_load = function (req, res, next) {
   User.findById(req.params.id, function (err, user) {
     if (err) { return next(err); }
     if (user == null) {
-      let err = new Error('Пользователь не найден');
-      err.status = 404;
       return next(err);
     }
     if (req.session.user) {
@@ -53,58 +51,63 @@ exports.user_exit = function (req, res) {
 // Обновление пользователя
 exports.user_update = [
   // Валидация формы
-  body('profile__form__email')
+  body('email')
     .isEmail()
     .normalizeEmail(),
-  body('profile__form__name')
+  body('username')
     .not().isEmpty()
     .trim()
     .escape(),
-  body('profile__form__password')
+  body('password')
     .not().isEmpty()
     .trim()
     .escape(),
-  check('profile__form__password').isLength({ min: 8 }),
+  check('password').isLength({ min: 8 }),
 
   // Процесс запроса после проверки формы
   (req, res, next) => {
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
       //Отображение всех ошибок после валидации
-      res.render(path.join('users/user', req.session.user_id), { title: req.session.user, errors: errors.array() });
+      res.render(path.join('error'), { title: 'Ошибка', errors: errors.array() });
       return;
     } else {
       // Информация формы прошла проверку
-      
+
       // Создание пользователя
       let query = {
         '_id': req.session.user_id
       }
       let newData = {
-        'username': req.body.profile__form__name,
-        'password': req.body.profile__form__password,
-        'email': req.body.profile__form__email
+        'username': req.body.username,
+        'password': req.body.password,
+        'email': req.body.email
       }
-      if (req.file) {
-        newData.avatar = '/uploads/' + req.file.filename
+      if (req.files) {
+        console.log('Почему')
+        let image = req.files.image;
+        let imageName = image.name.slice(0, -3) + '-' + Date.now() + '.jpg'
+        let src = path.join(__dirname, `../public/uploads/${imageName}`);
+        image.mv(src, function (err) {
+          if (err) { return next(err) }
+        })
+        newData.avatar = '/uploads/' + imageName
       }
 
       User.findOneAndUpdate(query, newData, function (err, doc) {
         if (err) { return next(err) }
-        
-      });
-
-      User.findOne({ 'username': req.body.profile__form__name })
-        .exec(function (err, user) {
-          if (err) { return next(err); }
-          if (user) {
+        User.findOne({ 'username': req.body.username })
+          .exec(function (err, user) {
+            if (err) { return next(err); }
+            if (user) {
               req.session.user = user
               res.redirect('back')
-          } else {
-            res.status(err.status || 500);
-            res.render('error', { title: 'Ошибка' });
-          }
-        })
+            } else {
+              res.status('500');
+              res.render('error', { title: 'Ошибка' });
+            }
+          })
+      });
     }
   }
 ]

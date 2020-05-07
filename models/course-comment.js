@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const CommentSchema = new Schema(
   {
     author: { type: Schema.ObjectId, ref: 'User' },
-    content: { type: String, maxlength: 500 },
+    content: { type: String, max: 500 },
     create_date: { type: Date, default: Date.now },
     like_by: [{ type: Schema.ObjectId, ref: 'User' }],
     dislike_by: [{ type: Schema.ObjectId, ref: 'User' }],

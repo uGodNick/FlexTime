@@ -23,14 +23,20 @@ router.get('/course:id', course_controller.course_content);
 // POST созданный курс
 router.post('/create', course_controller.courses_create);
 
+// POST удалить курс
+router.post('/course:id/delete_course', course_controller.course_delete)
+
 // POST лайк курса
-router.post('/course:id/likeCourse', course_controller.course_like);
+router.post('/course:id/likeCourse(#author)?', course_controller.course_like);
 
 // POST дизлайк урса
-router.post('/course:id/dislikeCourse', course_controller.course_dislike);
+router.post('/course:id/dislikeCourse(#author)?', course_controller.course_dislike);
 
-// POST создать коммент
+// POST создать комментарий
 router.post('/course:id/create_comment', course_controller.course_create_comment);
+
+// POST удалить комментарий
+router.post('/course:courseId/delete_comment:commentId', course_controller.course_delete_comment);
 
 // POST лайк коммент
 router.post('/course:courseId/likeComment:commentId', course_controller.course_comment_like);

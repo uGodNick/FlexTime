@@ -1,6 +1,9 @@
 extends layout
 
 block content
-  h1 #{message} #{error.status}
+  if errors
+    errors
+  else
+    h1 #{message} #{error.status}
   
 
