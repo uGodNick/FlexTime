@@ -15,8 +15,7 @@ block content
             option(value="music") Музыка
             option(value="health") Здоровье
         div.create__form__block
-          label(for="course_content") Блоки
-          input.create__form__content__count(type="text" name="course_content" id="course_content" required="true")
+          input.create__form__content__count(type="hidden" name="course_content" id="course_content" required="true")
         div.hidden-object
           input(type="hidden" name="course_author" value=user_id)
       div.create__form__content

@@ -121,6 +121,12 @@
 .page-main .about {
   background: none;
 }
+.page-main .new-courses,
+.page-main .hot-courses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .page-main section:last-child {
   border: none;
 }
@@ -755,6 +761,7 @@
 .course__title {
   position: relative;
   display: flex;
+  justify-content: center;
   width: 100%;
 }
 .course__title form {

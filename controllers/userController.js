@@ -84,7 +84,6 @@ exports.user_update = [
         'email': req.body.email
       }
       if (req.files) {
-        console.log('Почему')
         let image = req.files.image;
         let imageName = image.name.slice(0, -3) + '-' + Date.now() + '.jpg'
         let src = path.join(__dirname, `../public/uploads/${imageName}`);

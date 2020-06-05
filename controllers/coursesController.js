@@ -158,10 +158,26 @@ exports.courses_create = [
 ]
 
 exports.course_delete = function (req, res, next) {
-  Course.findByIdAndRemove(req.params.id, function (err) {
-    if (err) { return next(err) }
-    res.redirect('/courses')
-});
+  Course.findOne({ '_id': req.params.id })
+    .exec(function (err, course) {
+      if (err) { return next(err) }
+      CourseContent.findByIdAndRemove(course.content, function (err) {
+        if (err) {
+          return next(err)
+        }
+      })
+      for (let i = 0; i < course.comments.length; i++) {
+        CourseComment.findByIdAndRemove(course.comments[i], function (err) {
+          if (err) {
+            return next(err)
+          }
+        })
+      }
+      course.remove(function (err) {
+        if (err) { return next(err) }
+        res.redirect('/')
+      })
+    })
 }
 
 exports.course_content = function (req, res, next) {
@@ -221,8 +237,6 @@ exports.course_content = function (req, res, next) {
 
 exports.course_like = function (req, res, next) {
 
-  
-  
   Course.findOne({ '_id': req.params.id }).exec(function (err, course) {
     if (course) {
       if (err) { return next(err) }
@@ -356,7 +370,7 @@ exports.course_comment_like = function (req, res, next) {
       
       let likeList = comment.like_by
       likeList.push(req.session.user_id)
-      CourseComment.findOneAndUpdate({ '_id': req.params.commentId }, { 'dislike_by': dislikeList, 'like_by': likeList, 'rating': commentRating }, function (err, doc) {
+      CourseComment.findOneAndUpdate({ '_id': req.params.commentId }, { 'dislike_by': dislikeList, 'like_by': likeList, 'rating': commentRating }, function (err) {
         if (err) { return next(err) }
         res.redirect('../course' + req.params.courseId + '#'+ 'comment' + req.params.commentId)
       })
@@ -381,14 +395,14 @@ exports.course_comment_dislike = function (req, res, next) {
 
       User.findOne({ '_id': comment.author._id }).exec(function (err, user) {
         if (err) { return next(err) }
-        user.rating += userRating
+        user.rating -= userRating
         user.save()
       })
 
       
       let dislikeList = comment.dislike_by
       dislikeList.push(req.session.user_id)
-      CourseComment.findOneAndUpdate({ '_id': req.params.commentId }, { 'dislike_by': dislikeList, 'like_by': likeList, 'rating': commentRating }, function (err, doc) {
+      CourseComment.findOneAndUpdate({ '_id': req.params.commentId }, { 'dislike_by': dislikeList, 'like_by': likeList, 'rating': commentRating }, function (err) {
         if (err) { return next(err) }
         res.redirect('../course' + req.params.courseId + '#' + 'comment' + req.params.commentId)
       })
